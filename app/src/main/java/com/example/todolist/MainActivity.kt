@@ -5,7 +5,6 @@ package com.example.todolist
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,7 +23,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.todolist.ui.theme.ToDoListTheme
 
@@ -63,10 +61,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
                 Button(onClick = {
                     toDoList = toDoList.filterNot { it == elem }.toTypedArray()
-                },
-                    modifier = Modifier
-                        .background(Color.Red)
-                ) {
+                })
+                {
                     Text(text = "-")
                 }
             }
@@ -91,10 +87,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                     toDoList += input
                     input = ""
                 }
-            },
-                modifier = Modifier
-                    .background(Color.Green)
-            ) {
+            })
+            {
                 Text(text = "+")
             }
         }
