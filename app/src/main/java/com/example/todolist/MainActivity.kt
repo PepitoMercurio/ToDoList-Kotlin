@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -24,6 +25,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.todolist.ui.theme.ToDoListTheme
 
 class MainActivity : ComponentActivity() {
@@ -48,29 +51,57 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     var toDoList by remember { mutableStateOf(emptyArray<String>())}
 
     Column (modifier = Modifier.fillMaxSize()) {
-        for (elem in toDoList) {
+        Row (
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
+            Text(
+                text = "Bienvenue dans votre \"To Do List\"",
+                fontSize = 25.sp,
+                modifier = modifier
+                    .padding(bottom = 20.dp, top = 16.dp)
+            )
+        }
+
+        if (toDoList.size != 0) {
+            for (elem in toDoList) {
+                Row (
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Text(
+                        text = elem,
+                        modifier = modifier
+                    )
+
+                    Button(onClick = {
+                        toDoList = toDoList.filterNot { it == elem }.toTypedArray()
+                    })
+                    {
+                        Text(text = "-")
+                    }
+                }
+
+            }
+        } else {
             Row (
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                Text(
-                    text = elem,
-                    modifier = modifier
-                )
-
-                Button(onClick = {
-                    toDoList = toDoList.filterNot { it == elem }.toTypedArray()
-                })
-                {
-                    Text(text = "-")
-                }
+                Text(text = "Aucune tâche dans votre liste")
             }
-
         }
 
+
         Row (
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceAround
         ) {
