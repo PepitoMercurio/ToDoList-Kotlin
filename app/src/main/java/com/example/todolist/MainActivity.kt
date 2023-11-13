@@ -51,6 +51,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     var toDoList by remember { mutableStateOf(emptyArray<String>())}
 
     Column (modifier = Modifier.fillMaxSize()) {
+        //Titre
         Row (
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -64,6 +65,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             )
         }
 
+        //Liste des taches
+        //si il y en a aucune un texte prédéfini sera affiché à la place
         if (toDoList.size != 0) {
             for (elem in toDoList) {
                 Row (
@@ -86,6 +89,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
             }
         } else {
+            //Phrase dans le cas où il n'y a aucune tache
             Row (
                 modifier = Modifier
                     .padding(top = 16.dp)
@@ -97,7 +101,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             }
         }
 
-
+        //Ajouter une tache
         Row (
             modifier = Modifier
                 .padding(top = 16.dp)
